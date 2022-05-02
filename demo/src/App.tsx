@@ -12,7 +12,7 @@ function App() {
         onModalBackdropClick={() => {}}
       />
       <Header onHeaderButtonClick={() => {}} />
-      <Meals></Meals>
+      <Meals />
     </Fragment>
   );
 }
