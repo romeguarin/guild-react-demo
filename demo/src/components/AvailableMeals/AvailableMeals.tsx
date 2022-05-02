@@ -7,7 +7,12 @@ import MealItem from './MealItem';
 type Props = {};
 
 const AvailableMeals = (props: Props) => {
-  const meals = DUMMY_MEALS.map((meal) => <MealItem {...meal} />);
+  const meals = DUMMY_MEALS.map((meal) => (
+    <MealItem
+      key={meal.id}
+      {...meal}
+    />
+  ));
   return (
     <section className={classes.meals}>
       <Card>

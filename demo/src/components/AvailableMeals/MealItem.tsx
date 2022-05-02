@@ -2,10 +2,12 @@ import React, { FC } from 'react';
 import { MealProps } from '../../interfaces/meal';
 import { BaseComponentProps } from '../../interfaces/react-helper-interfaces';
 import classes from './MealItem.module.css';
+import MealItemForm from './MealItemForm';
 
 interface MealItemProps extends BaseComponentProps, MealProps {}
 
 const MealItem: FC<MealItemProps> = (props) => {
+  const addToCartHandler = (amount: number) => {};
   return (
     <li className={classes.meal}>
       <div>
@@ -14,9 +16,10 @@ const MealItem: FC<MealItemProps> = (props) => {
         <div className={classes.price}>{props.price}</div>
       </div>
       <div>
-        <form>
-          <button>+ Add</button>
-        </form>
+        <MealItemForm
+          id={props.id}
+          onAddToCart={addToCartHandler}
+        />
       </div>
     </li>
   );
