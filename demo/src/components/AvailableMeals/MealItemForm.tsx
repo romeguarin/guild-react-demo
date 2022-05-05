@@ -41,7 +41,7 @@ const MealItemForm: FC<MealItemFormProps> = (props) => {
         label='Amount'
         htmlInput={inputDom}
       />
-      <button>+ Add</button>
+      <button type='submit'>+ Add</button>
       {!amountIsValid && <p>Please enter a valid amount</p>}
     </form>
   );

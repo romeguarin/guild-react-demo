@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react';
+import { CartItem } from '../../interfaces/cart-models';
 import AvailableMeals from '../AvailableMeals/AvailableMeals';
 import classes from './Meals.module.css';
 
-type Props = {};
+interface MealsProps {
+  addToCart: (item: CartItem) => any;
+}
 
-const Meals = (props: Props) => {
+const Meals = (props: MealsProps) => {
   return (
     <Fragment>
       <section className={classes.summary}>
@@ -18,7 +21,7 @@ const Meals = (props: Props) => {
           and of course by experienced chefs!
         </p>
       </section>
-      <AvailableMeals />
+      <AvailableMeals addToCart={props.addToCart} />
     </Fragment>
   );
 };

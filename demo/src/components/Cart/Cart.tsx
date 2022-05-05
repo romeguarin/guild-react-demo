@@ -1,17 +1,33 @@
 import { FC } from 'react';
+import { CartItem } from '../../interfaces/cart-models';
 import Modal from '../Modal/Modal';
 import classes from './Cart.module.css';
+import CartEntry from './CartEntry';
 
 export interface CartProps {
+  items: CartItem[];
+  totalAmount: number;
   onModalBackdropClick: (event: any) => any;
   onCloseButtonClick: (event: any) => any;
 }
 
 const Cart: FC<CartProps> = (props) => {
-  const totalAmount: string = `$Total here`;
+  const totalAmount: string = `$${props.totalAmount}`;
+
+  const cartItems = (
+    <ul className={classes['cart-items']}>
+      {props.items.map((item, index) => (
+        <CartEntry
+          key={index}
+          {...item}
+        ></CartEntry>
+      ))}
+    </ul>
+  );
 
   return (
-    <Modal onBackDropClick={() => {}}>
+    <Modal onBackDropClick={props.onModalBackdropClick}>
+      {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>

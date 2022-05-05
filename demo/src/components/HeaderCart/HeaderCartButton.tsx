@@ -17,7 +17,7 @@ const HeaderCartButton: FC<HeaderCartButtonProps> = (props) => {
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>{2}</span>
+      <span className={classes.badge}>{props.count}</span>
     </button>
   );
 };
