@@ -1,13 +1,15 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import CartContext, { CartContextProps } from '../../store/CartContext';
 import CartIcon from './CartIcon';
 import classes from './HeaderCartButton.module.css';
 
 interface HeaderCartButtonProps {
-  count?: number;
   onClick: (event: any) => any;
 }
 
 const HeaderCartButton: FC<HeaderCartButtonProps> = (props) => {
+  const cartCtx: CartContextProps = useContext(CartContext);
+  const itemCount = cartCtx.items.length;
   return (
     <button
       className={classes.button}
@@ -17,7 +19,7 @@ const HeaderCartButton: FC<HeaderCartButtonProps> = (props) => {
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>{props.count}</span>
+      <span className={classes.badge}>{itemCount}</span>
     </button>
   );
 };

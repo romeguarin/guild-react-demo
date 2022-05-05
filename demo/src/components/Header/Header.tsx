@@ -4,7 +4,6 @@ import HeaderCartButton from '../HeaderCart/HeaderCartButton';
 import classes from './Header.module.css';
 
 interface HeaderProps {
-  count?: number;
   onHeaderButtonClick: (event: any) => any;
 }
 
@@ -13,10 +12,7 @@ const Header: FC<HeaderProps> = (props) => {
     <Fragment>
       <header className={classes.header}>
         <h1>ReactMeals</h1>
-        <HeaderCartButton
-          count={props.count}
-          onClick={props.onHeaderButtonClick}
-        />
+        <HeaderCartButton onClick={props.onHeaderButtonClick} />
       </header>
       <div className={classes['main-image']}>
         <img

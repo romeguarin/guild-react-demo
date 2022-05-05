@@ -1,21 +1,22 @@
-import React, { FC } from 'react';
-import { CartItem } from '../../interfaces/cart-models';
+import React, { FC, useContext } from 'react';
 import { MealProps } from '../../interfaces/meal';
 import { BaseComponentProps } from '../../interfaces/react-helper-interfaces';
+import CartContext, { CartContextProps } from '../../store/CartContext';
 import classes from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 
-interface MealItemProps extends BaseComponentProps, MealProps {
-  addToCart: (item: CartItem) => any;
-}
+interface MealItemProps extends BaseComponentProps, MealProps {}
 
 const MealItem: FC<MealItemProps> = (props) => {
+  const cartCtx: CartContextProps = useContext(CartContext);
   const addToCartHandler = (amount: number) => {
-    props.addToCart({
-      id: props.id,
-      name: props.name,
-      price: props.price,
-    });
+    if (cartCtx.addItem) {
+      cartCtx.addItem({
+        id: props.id,
+        name: props.name,
+        price: props.price,
+      });
+    }
   };
   return (
     <li className={classes.meal}>

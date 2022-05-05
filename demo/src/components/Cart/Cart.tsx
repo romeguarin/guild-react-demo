@@ -1,22 +1,22 @@
-import { FC } from 'react';
-import { CartItem } from '../../interfaces/cart-models';
+import { FC, useContext } from 'react';
+import CartContext, { CartContextProps } from '../../store/CartContext';
 import Modal from '../Modal/Modal';
 import classes from './Cart.module.css';
 import CartEntry from './CartEntry';
 
 export interface CartProps {
-  items: CartItem[];
-  totalAmount: number;
   onModalBackdropClick: (event: any) => any;
   onCloseButtonClick: (event: any) => any;
 }
 
 const Cart: FC<CartProps> = (props) => {
-  const totalAmount: string = `$${props.totalAmount}`;
+  const cartCtx: CartContextProps = useContext(CartContext);
+
+  const totalAmount: string = `$${cartCtx.totalAmount}`;
 
   const cartItems = (
     <ul className={classes['cart-items']}>
-      {props.items.map((item, index) => (
+      {cartCtx.items.map((item, index) => (
         <CartEntry
           key={index}
           {...item}
