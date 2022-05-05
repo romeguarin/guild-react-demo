@@ -1,4 +1,5 @@
 import { FC, Fragment, PropsWithChildren } from 'react';
+import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 
 interface BackdropProps {
@@ -25,10 +26,18 @@ const ModalOverlay: FC<PropsWithChildren<any>> = (props) => {
 interface ModalProps extends PropsWithChildren<BackdropProps> {}
 
 const Modal: FC<ModalProps> = (props) => {
+  const overlays = document.getElementById('overlays');
+
   return (
     <Fragment>
-      <Backdrop onBackDropClick={props.onBackDropClick} />
-      <ModalOverlay>{props.children}</ModalOverlay>
+      {overlays &&
+        ReactDOM.createPortal(
+          <Fragment>
+            <Backdrop onBackDropClick={props.onBackDropClick} />
+            <ModalOverlay>{props.children}</ModalOverlay>
+          </Fragment>,
+          overlays
+        )}
     </Fragment>
   );
 };
